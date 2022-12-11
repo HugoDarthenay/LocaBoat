@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}LocaBoat{% endblock %}
+
+{% block body %}
+
+{% for i in test%}
+    <p>{{ i.libelle }}</p>
+{% endfor %}
+
+<p>{{ test[0].libelle }}</p>
+
+    <form method="post" action="filtre">
+        <div>
+            <p>Taille</p>
+            <ul>
+                {% for size in listSize %}
+                    <input type="checkbox" name="{{ size.libelle }}" value="{{ size.libelle }}"><label>{{ size.libelle }}</label>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <p>Type</p>
+            <ul>
+                {% for type in listType %}
+                    <input type="checkbox" name="{{ type.libelle }}" value="{{ type.libelle }}"><label>{{ type.libelle }}</label>
+                {% endfor %}
+            </ul>
+        </div>
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <div class="container">
+
+            {% for boat in listBoat %}
+                <div class="card m-1">
+                    <img class="card-img-top" src="{{ asset(boat.img) }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ boat.name }}</h5>
+                        <p class="card-text">{{ boat.resume }}</p>
+                        <p class="card-text">{{ boat.priceHour}} euros de l'heure.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            {% endfor %}
+
+    </div>
+
+{% endblock %}
+
